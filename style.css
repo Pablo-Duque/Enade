@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+}
+
+.primaria, .segundaria{
+    padding: 10px;
+}
+.primaria{
+    background-color: #0051ff;
+}
+.segundaria{
+    background-color: #00aeff;
+}
+.barra{
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
