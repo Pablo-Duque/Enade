@@ -8,11 +8,32 @@ body{
 .primaria{
     background-color: #0051ff;
 }
+.primaria a{
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    font-size: x-large;
+}
 .secundaria{
     background-color: #00aeff;
+    font-size: x-large;
 }
 .barra{
     display: flex;
-    overflow: hidden;
+    justify-content: space-evenly;
+    flex-flow: row;
     position: relative;
+}
+.filtro{
+    position: relative;
+    display: inline-block;
+    min-width: 200px;
+}
+.itens-filtro{
+    display: none;
+    position: absolute;
+    white-space: nowrap;
+}
+.filtro:hover .itens-filtro{
+    display: block;
 }
