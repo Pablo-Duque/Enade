@@ -1,0 +1,38 @@
+interface ProRanking
+{
+     getAllUsuarios()
+     {
+        //puxa todos os usuários do banco.
+     }
+}
+
+//nunca existirão dois ou mais rankings simultaneamente, então a classe pode ser estática.
+static class Rank
+{
+    static lista usuarios;
+
+    bubbleSort(lista l)
+    {
+        //bubble sort
+    }
+    calcRank() 
+    {
+        //puxa todos os usuários do ranking e os guarda na lista,
+        //depois ordena a lista com bubble sort.
+
+        this.usuarios = ProRanking.getAllUsuarios();
+        bubbleSort(usuarios);
+    }
+    listarMaiorMenor()
+    {
+        //lista usuários do ranking mais baixo ao mais alto.
+    }
+    listarMenorMaior()
+    {
+        //lista usuários ao contrario de 'exibirMaiorMenor()'.
+    }
+    procUser(string nome)
+    {
+        //procura a posição de um usuário no ranking por seu nome.
+    }
+}
