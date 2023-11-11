@@ -1,0 +1,54 @@
+#container-da-barra-de-pesquisa {
+    /* margin: 0; */
+    /* padding: 0; */
+    /* min-height: 60vh; */
+    width: 100vw;
+    /* color: white; */
+    /* justify-content: center; */
+}
+#barra-de-pesquisa{
+    min-height: 20%;
+    min-width: 100%;
+    background-color: #e2e3e5;
+}
+#container-do-rank {
+    max-width: 70vw;
+}
+th.table, td.table {
+    width: 33%;
+}
+/* #subtitulo {
+    margin-bottom: 5vh;
+} */
+
+.fade-in {
+    opacity: 0; /* Set initial opacity to 0 */
+    animation: fadeInAnimation 2s ease-in-out forwards; /* Animation properties */
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    opacity: 0; /* Set initial opacity to 0 */
+    transform: translateY(100%); /* Move the element below the viewport */
+    animation: slideInAnimation 1s ease-in-out forwards; /* Animation properties */
+    animation-delay: 0.5s; /* delay */
+}
+
+@keyframes slideInAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
