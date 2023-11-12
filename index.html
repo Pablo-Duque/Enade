@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/GeneralUse.css">
+    <link rel="stylesheet" href="css/StyleIndex.css">
     <title>Inicio</title>
 </head>
 <body>
@@ -18,23 +19,27 @@
     </div>
     <div class="barra secundaria">
         <form action="">
-            <div class="filtro">
+            <div class="dropdown-filtro">
                 <p>Matéria</p>
-                <div class="itens-filtro">
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                </div>
-            </div>
-            <div class="filtro">
-                <p>Conteúdo</p>
-                <div class="itens-filtro">
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                    <input type="checkbox" name="materia" value="IHC"><label for="materia">Interação Humano-Computador</label><br>
-                </div>
+                <div class="itens-dropdown">
+                    <p>Desenvolvimento WEB</p>
+                    <div class="segundo-dropdown">
+                        <input type="checkbox" name="conteudo" value="HTML"><label for="conteudo">HTML</label><br>
+                        <input type="checkbox" name="conteudo" value="CSS"><label for="conteudo">CSS</label><br>
+                        <input type="checkbox" name="conteudo" value="Responsividade"><label for="conteudo">Responsividade</label><br>
+                    </div>
+                    <p>Linguagem de Programação</p>
+                    <div class="segundo-dropdown">
+                        <input type="checkbox" name="conteudo" value="Variaveis"><label for="conteudo">Variáveis</label><br>
+                        <input type="checkbox" name="conteudo" value="Vetor"><label for="conteudo">Vetor</label><br>
+                        <input type="checkbox" name="conteudo" value="Matriz"><label for="conteudo">Matriz</label><br>
+                    </div>
+                    <p>Interação Humano-Computador</p>
+                    <div class="segundo-dropdown">
+                        <input type="checkbox" name="conteudo" value="Usabilidade"><label for="conteudo">Usabilidade</label><br>
+                        <input type="checkbox" name="conteudo" value="Design"><label for="conteudo">Design</label><br>
+                        <input type="checkbox" name="conteudo" value="Frameworks"><label for="conteudo">Frameworks Cognitivos</label><br>
+                    </div>
             </div>
         </form>
     </div>       

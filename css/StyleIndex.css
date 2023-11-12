@@ -1,0 +1,53 @@
+@import url(Colors.css);
+
+.primaria {
+    padding: 10px;
+    background-color: var(--primaria);
+}
+
+.primaria a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    font-size: x-large;
+}
+
+.secundaria {
+    background-color: var(--secundaria);
+    font-size: x-large;
+}
+
+.barra {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row;
+    position: relative;
+}
+
+.dropdown-filtro {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.itens-dropdown {
+    display: none;
+    position: absolute;
+}
+
+.dropdown-filtro:hover > .itens-dropdown {
+    display: block;
+}
+
+.segundo-dropdown {
+    position: absolute;
+    display: none;
+    left: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.itens-dropdown > :hover + .segundo-dropdown,
+.segundo-dropdown:hover {
+    display: block;
+}

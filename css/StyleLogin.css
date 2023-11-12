@@ -1,9 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
+@import url(Colors.css);
+
 .titulo{
     text-align: center;
 }
@@ -12,7 +8,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: linear-gradient(90deg, #0051ff,#00aeff );
+    background-image: linear-gradient(90deg, var(--primaria), var(--secundaria));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
