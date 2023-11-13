@@ -17,32 +17,38 @@
         <a href="#">Sobre</a>
         <a href="#">Cadastrar Pergunta</a>
     </div>
-    <div class="barra secundaria">
-        <form action="">
-            <div class="dropdown-filtro">
+        <form action="" class="barra secundaria">
+            <div class="dropdown">
                 <p>Matéria</p>
-                <div class="itens-dropdown">
+                <div class="materias">
                     <p>Desenvolvimento WEB</p>
-                    <div class="segundo-dropdown">
-                        <input type="checkbox" name="conteudo" value="HTML"><label for="conteudo">HTML</label><br>
-                        <input type="checkbox" name="conteudo" value="CSS"><label for="conteudo">CSS</label><br>
-                        <input type="checkbox" name="conteudo" value="Responsividade"><label for="conteudo">Responsividade</label><br>
+                    <div class="conteudos">
+                        <input type="checkbox" id="html" name="WEB" value="HTML"><label for="html">HTML</label><br>
+                        <input type="checkbox" id="css" name="WEB" value="CSS"><label for="css">CSS</label><br>
+                        <input type="checkbox" id="responsividade" name="WEB" value="Responsividade"><label for="responsividade">Responsividade</label><br>
                     </div>
                     <p>Linguagem de Programação</p>
-                    <div class="segundo-dropdown">
-                        <input type="checkbox" name="conteudo" value="Variaveis"><label for="conteudo">Variáveis</label><br>
-                        <input type="checkbox" name="conteudo" value="Vetor"><label for="conteudo">Vetor</label><br>
-                        <input type="checkbox" name="conteudo" value="Matriz"><label for="conteudo">Matriz</label><br>
+                    <div class="conteudos">
+                        <input type="checkbox" id="variaveis" name="LPR" value="Variaveis"><label for="variaveis">Variáveis</label><br>
+                        <input type="checkbox" id="vetor" name="LPR" value="Vetor"><label for="vetor">Vetor</label><br>
+                        <input type="checkbox" id="matriz" name="LPR" value="Matriz"><label for="matriz">Matriz</label><br>
                     </div>
                     <p>Interação Humano-Computador</p>
-                    <div class="segundo-dropdown">
-                        <input type="checkbox" name="conteudo" value="Usabilidade"><label for="conteudo">Usabilidade</label><br>
-                        <input type="checkbox" name="conteudo" value="Design"><label for="conteudo">Design</label><br>
-                        <input type="checkbox" name="conteudo" value="Frameworks"><label for="conteudo">Frameworks Cognitivos</label><br>
+                    <div class="conteudos">
+                        <input type="checkbox" id="usabilidade" name="IHC" value="Usabilidade"><label for="usabilidade">Usabilidade</label><br>
+                        <input type="checkbox" id="design" name="IHC" value="Design"><label for="design">Design</label><br>
+                        <input type="checkbox" id="frameworks" name="IHC" value="Frameworks"><label for="frameworks">Frameworks Cognitivos</label><br>
                     </div>
+                </div>
             </div>
-        </form>
-    </div>       
+            <div class="inputAno">
+                <label for="inicio">De:</label>
+                <input type="number" name="inicio">
+                <label for="fim">Até:</label>
+                <input type="number" name="fim">
+            </div>
+            <input type="submit" value="Filtrar" class="filtro">
+        </form>   
 
 </body>
 </html>

@@ -6,7 +6,7 @@
 }
 
 .primaria a {
-    color: white;
+    color: var(--contrastePrimaria);
     text-decoration: none;
     padding: 20px;
     font-size: x-large;
@@ -15,6 +15,7 @@
 .secundaria {
     background-color: var(--secundaria);
     font-size: x-large;
+    align-items: center;
 }
 
 .barra {
@@ -24,30 +25,51 @@
     position: relative;
 }
 
-.dropdown-filtro {
+.dropdown {
     position: relative;
     display: inline-block;
     white-space: nowrap;
 }
 
-.itens-dropdown {
+.materias {
     display: none;
     position: absolute;
 }
 
-.dropdown-filtro:hover > .itens-dropdown {
+.dropdown:hover > .materias {
     display: block;
 }
 
-.segundo-dropdown {
+.conteudos {
     position: absolute;
     display: none;
     left: 100%;
     top: 50%;
     transform: translate(0, -50%);
+    margin-left: 10%;
 }
 
-.itens-dropdown > :hover + .segundo-dropdown,
-.segundo-dropdown:hover {
+.materias > :hover + .conteudos,
+.conteudos:hover {
     display: block;
+}
+
+.filtro{
+    background-color: var(--primaria);
+    color: var(--contrastePrimaria);
+    border-radius: 7px;
+    padding: 12px;
+    border: none;
+}
+
+.inputAno{
+    display: flex;
+    vertical-align: middle;
+    justify-content:space-evenly;
+}
+
+.inputAno input{
+    border-radius: 10px;
+    border: var(--primaria) solid 1px;
+    width: 20%;
 }
