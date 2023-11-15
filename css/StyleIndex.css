@@ -1,8 +1,17 @@
 @import url(Colors.css);
 
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    margin: 0;
+}
+
 .primaria {
     padding: 10px;
     background-color: var(--primaria);
+    overflow: hidden;
 }
 
 .primaria a {
@@ -13,7 +22,6 @@
 }
 
 .secundaria {
-    background-color: var(--secundaria);
     font-size: x-large;
     align-items: center;
 }
@@ -21,55 +29,41 @@
 .barra {
     display: flex;
     justify-content: space-evenly;
-    flex-flow: row;
     position: relative;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-}
-
-.materias {
-    display: none;
-    position: absolute;
-}
-
-.dropdown:hover > .materias {
-    display: block;
-}
-
-.conteudos {
-    position: absolute;
-    display: none;
-    left: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
-    margin-left: 10%;
-}
-
-.materias > :hover + .conteudos,
-.conteudos:hover {
-    display: block;
+    min-height: 40px;
 }
 
 .filtro{
-    background-color: var(--primaria);
-    color: var(--contrastePrimaria);
-    border-radius: 7px;
-    padding: 12px;
-    border: none;
-}
-
-.inputAno{
     display: flex;
+    position: relative;
+    float: left;
     vertical-align: middle;
-    justify-content:space-evenly;
 }
 
-.inputAno input{
-    border-radius: 10px;
-    border: var(--primaria) solid 1px;
-    width: 20%;
+.seta.aberta{
+    transform: rotate(90deg);
+}
+
+.materia{
+    background-color: var(--secundaria);
+    display: flex;    
+    flex-direction: column;
+}
+
+.conteudo{
+    background-color: aqua;
+    padding: 2% 0%;
+    display: none;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.conteudo.aberta{
+    display: flex;
+}
+
+.perguntas{
+    display: flex;
+    position: relative;
 }
