@@ -1,5 +1,10 @@
 @import url(Colors.css);
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 .titulo{
     text-align: center;
 }
@@ -100,9 +105,4 @@ body{
 }
 .registro p a:hover{
     text-decoration: underline;
-}
-.erro{
-    font-size: 12px;
-    margin: 3px 0 0 19px;
-    color:#ffffff;
 }
