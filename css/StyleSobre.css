@@ -1,0 +1,83 @@
+body{
+    background: linear-gradient(to bottom right,#009FB7, black);
+}
+
+.titulo{
+    display: flex;
+    text-align: right;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: entrar 1.5s ease-out forwards;
+}
+  
+@keyframes entrar {
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.logo{
+    margin-top: 0;
+    margin-right: 100px;
+    margin-left: 220px;
+    width: 30%;
+    /*box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);*/
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: 180px;
+    margin-top: 70px;
+    font-size: 150%;
+}
+
+.letras{
+    color: black;
+    font-size: 500%;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.cartao{
+    background-color: black;
+    width: 100%;
+    height: auto;
+    color: #1E3888;
+    padding-top: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 150px;
+    text-align: justify;
+}
+
+.cartao p{
+    font-size: 150%;
+}
+
+.cartao h1{
+    font-size: 300%;
+}
+
+.aprovado{
+    width: 20%;
+    margin-top: 20px;
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
