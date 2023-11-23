@@ -6,3 +6,11 @@ function abrirConteudo(item){
     seta.classList.toggle("aberta");
     conteudos.forEach(conteudo => conteudo.classList.toggle("aberta"));
 }
+
+function abrirFiltro(){
+    const seta = document.querySelector('.seta-filtro');
+    const filtro = document.querySelector('.filtro');
+
+    seta.classList.toggle('aberta');
+    filtro.classList.toggle('aberta')
+}
