@@ -19,7 +19,7 @@
     </div>
     <div class="container d-flex p-0 mt-3 slide-in" id="container-do-rank">
         <table class="table align-middle table-striped table-secondary table-bordered border border-dark border-2">
-            <thead>
+            <!-- <thead>
                 <tr>
                     <th >#</th>
                     <th >USUÁRIO</th>
@@ -98,7 +98,11 @@
                     <td>1000000</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+
+        <?php
+            
+        ?>
     </div>
 
     <!-- bootstrap -->
@@ -107,3 +111,28 @@
     <script src="https://kit.fontawesome.com/00d2f0105d.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+    include_once("conexao.php");
+    //Implementando os métodos de exibição da tabela.
+    class rank
+    {
+        public $rank, $resultado;
+        
+        public function __construct() {
+            $queryRank = 'SELECT * FROM USUARIO';
+            
+            $this->$resultado = mysqli_query($mysqli, $queryRank);            
+
+            if($this->$resultado) 
+            {
+                $this->$rank = mysqli_fetch_assoc ($resultado);
+            }
+        }
+        // public function exibirTabela() {
+        //     if ($this->$resultado) {
+        //         echo "<tr><td>" + $rank[""] + "</td>";
+        //     }
+        // }
+    }
+?>

@@ -7,7 +7,7 @@
     if ($email == "admin@admin.com") {
         $result = "SELECT * FROM USUARIO WHERE EMAIL = '$email' LIMIT 1";
         $resultado = mysqli_query($mysqli, $result);
-        if ($resultado && $usuario = mysqli_fetch_assoc($resultado)) {
+        if ($resultado && $usuario = mysqli_fetch_assoc ($resultado)) {
             if (password_verify($senha, $usuario["SENHA"])) {
                 if (password_needs_rehash($usuario["SENHA"], PASSWORD_DEFAULT)) {
                     $hashAtualizado = password_hash($senha, PASSWORD_DEFAULT);// Atualiza o hash 
