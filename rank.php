@@ -28,7 +28,9 @@
             </thead>
             <tbody>
                 <?php
-                    $rank = new Rank();
+                    include_once("conexao.php");
+
+                    $rank = new Rank($mysqli);
                     
                     $rank->exibirTabela();                    
                 ?>  
@@ -116,47 +118,98 @@
 </body>
 </html>
 
-<?php
-    include_once("conexao.php");
-    //Implementando os métodos de exibição da tabela.
-    class Rank
-    {
-        public $rank, $resultado;
-        
-        public function __construct() 
-        {
-            $queryRank = 'SELECT * FROM USUARIO';
-            
-            $this->resultado = mysqli_query($mysqli, $queryRank);            
 
-            if($this->resultado) 
-            {
-                $this->rank = mysqli_fetch_assoc($this->resultado);
-            }
-        }
-        public function exibirTabela() 
+<?php
+//Implementando os métodos de exibição da tabela.
+class Rank
+{
+    public $rank, $resultado;
+
+    public function __construct($mysqli) 
+    {
+        $queryRank = 'SELECT * FROM USUARIO';
+
+        $this->resultado = mysqli_query($mysqli, $queryRank);
+
+        if ($this->resultado) 
         {
-            if ($this->resultado) 
-            {
-                for ($i = 1; $i <= mysqli_num_rows($this->resultado); $i++) 
-                {
-                    echo 
-                    "<tr>"
-                        . "<td>". $i . "</td>"
-                        . "<td>" . $this->rank["login"] . "</td>" 
-                        . "<td>" . $this->rank["pontuacao_maxima"] . "</td>"
-                    . "</tr>";
-                }
-            }
-            else
-            {
-                echo
-                "<tr>
-                    <td> 1 </td>
-                    <td> ERRO </td>
-                    <td> ERRO </td>
-                </tr>";
-            }
+            $this->rank = $this->calcRank();
         }
     }
+
+    public function exibirTabela() 
+    {
+        if ($this->rank) 
+        {
+            $i = 1;
+            foreach ($this->rank as $row) 
+            {
+                echo 
+                "<tr>"
+                    . "<td>". $i . "</td>"
+                    . "<td>" . $row["login"] . "</td>" 
+                    . "<td>" . $row["pontuacao_maxima"] . "</td>"
+                . "</tr>";
+
+                $i++;
+            }
+        }
+        else
+        {
+            echo
+            "<tr>
+                <td> 1 </td>
+                <td> ERRO </td>
+                <td> ERRO </td>
+            </tr>";
+        }
+    }
+
+    private function calcRank($int = 1)
+    {
+        $tabela = array();
+
+        while ($linha = mysqli_fetch_assoc($this->resultado)) 
+        {
+            $tabela[] = $linha;
+        }
+
+        return ($int == 1) ? $this->maiorMenor($tabela) : $this->menorMaior($tabela);
+    }
+
+    private function maiorMenor($arr)
+    {
+        $n = count($arr);
+
+        for ($i = 0; $i < $n - 1; $i++) {
+            for ($j = 0; $j < $n - $i - 1; $j++) {
+                if ($arr[$j]['pontuacao_maxima'] < $arr[$j + 1]['pontuacao_maxima']) {
+                    $temp = $arr[$j];
+                    $arr[$j] = $arr[$j + 1];
+                    $arr[$j + 1] = $temp;
+                }
+            }
+        }
+
+        return $arr;
+    }
+
+    private function menorMaior($arr)
+    {
+        $n = count($arr);
+
+        for ($i = 0; $i < $n - 1; $i++) {
+            for ($j = 0; $j < $n - $i - 1; $j++) {
+                if ($arr[$j]['pontuacao_maxima'] > $arr[$j + 1]['pontuacao_maxima']) {
+                    $temp = $arr[$j];
+                    $arr[$j] = $arr[$j + 1];
+                    $arr[$j + 1] = $temp;
+                }
+            }
+        }
+
+        return $arr;
+    }
+
+}
 ?>
