@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/11/2023 às 01:23
+-- Tempo de geração: 24/11/2023 às 04:18
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -55,7 +55,7 @@ INSERT INTO `conteudo` (`ID`, `nome`, `materia`) VALUES
 (15, 'Persistência de dados', 'DDMO'),
 (16, 'Conectividade', 'DDMO'),
 (17, 'Serviços em background', 'DDMO'),
-(18, 'Conectividade', 'DDMO'),
+(18, 'Deploy', 'DDMO'),
 (19, 'Processo de software', 'ENSW'),
 (20, 'Engenharia de requisitos', 'ENSW'),
 (21, 'Projeto e implementação', 'ENSW'),

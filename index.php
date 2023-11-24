@@ -29,7 +29,9 @@
       $materia = "SELECT sigla, nome FROM materia ORDER BY nome";
       $pesqMat = mysqli_query($mysqli, $materia);
 
+      //Inclui tupla por tupla
       while($tuplaMat =  mysqli_fetch_assoc($pesqMat)){
+        //Extrair do banco de dados, desse modo consigo utilizar as variaveis com o mesmo nome do atributo
         extract($tuplaMat);
         echo"<div class='materia'>
         <p onclick='abrirConteudo(this)'><svg class='seta' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-caret-right-fill' viewBox='0 0 16 16'>
@@ -46,8 +48,9 @@
                   
         echo"</div>";
       }
+
       ?>
-              <input type="submit" name="Filtrar" class="enviar">
+              <input type="submit" value="Filtrar" name="FiltrarContent" class="enviar">
             </form>
           </div>
           <div class="seta-filtro" onclick="abrirFiltro()">
@@ -56,7 +59,64 @@
             </svg>
           </div>
           <div class="perguntas">
+            <?php
+            //Armazenar questões selecionadas
+              $marcado = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+                $conjuntoValores = '';
+                $i = 0;
+                $max = 10;
+                if(!empty($marcado['conteudoSelec'])){
+                  foreach($marcado['conteudoSelec'] as $valorMarcado){
+                    if(!empty($conjuntoValores)){
+                      $conjuntoValores .= ", $valorMarcado";
+                    }
+                    else{
+                      $conjuntoValores .= "$valorMarcado";
+                    }
+                  }
+                  //Substituir pelas perguntas
+                  $pergunta = "SELECT nome FROM conteudo WHERE id IN($conjuntoValores) ORDER BY nome";
+                  $pesqPerg = mysqli_query($mysqli, $pergunta);
+  
+                  while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
+                    extract($tuplaPerg);
+                    echo"$nome<br>";
+                    $i++;
+                    if($i >= $max)
+                      break;
+                  }
+                }
+                else{
+                  //Descobrir qual a ultima questao armazenada
+                  $maxQuest = "SELECT count(*) as ultimaQuestao FROM conteudo";
+                  $pesqContagem = mysqli_query($mysqli, $maxQuest);
+                  $intermediario = mysqli_fetch_assoc($pesqContagem);
+                  extract($intermediario);
 
+                  //Gerar numeros aleatorios
+                  $gerar = array();
+                  while(count($gerar) < $max){
+                    $num = rand(1, $ultimaQuestao);
+                    if(!in_array($num, $gerar)){
+                      $gerar[] = $num;
+                    }
+                  }
+                  $aleatorios = implode(', ', $gerar);
+
+                  //Buscar questoes aleatorias
+                  $pergunta = "SELECT nome FROM conteudo WHERE id IN($aleatorios) ORDER BY nome";
+                  $pesqPerg = mysqli_query($mysqli, $pergunta);
+  
+                 while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
+                    extract($tuplaPerg);
+                   echo"$nome<br>";
+                   $i++;
+                   if($i >= $max)
+                    break;
+                  }
+                }
+
+            ?>
           </div>
         </body>
         </html>
