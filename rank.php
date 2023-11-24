@@ -19,7 +19,7 @@
     </div>
     <div class="container d-flex p-0 mt-3 slide-in" id="container-do-rank">
         <table class="table align-middle table-striped table-secondary table-bordered border border-dark border-2">
-            <!-- <thead>
+            <thead>
                 <tr>
                     <th >#</th>
                     <th >USUÁRIO</th>
@@ -27,82 +27,86 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-            </tbody>
-        </table> -->
+                <?php
+                    $rank = new Rank();
+                    
+                    $rank->exibirTabela();                    
+                ?>  
+            </tbody>    
 
-        <?php
-            
-        ?>
+            <!--<tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Pablito</td>
+                    <td>1000000</td>
+                </tr>
+            </tbody>-->
+        </table> 
     </div>
 
     <!-- bootstrap -->
@@ -115,24 +119,44 @@
 <?php
     include_once("conexao.php");
     //Implementando os métodos de exibição da tabela.
-    class rank
+    class Rank
     {
         public $rank, $resultado;
         
-        public function __construct() {
+        public function __construct() 
+        {
             $queryRank = 'SELECT * FROM USUARIO';
             
-            $this->$resultado = mysqli_query($mysqli, $queryRank);            
+            $this->resultado = mysqli_query($mysqli, $queryRank);            
 
-            if($this->$resultado) 
+            if($this->resultado) 
             {
-                $this->$rank = mysqli_fetch_assoc ($resultado);
+                $this->rank = mysqli_fetch_assoc($this->resultado);
             }
         }
-        // public function exibirTabela() {
-        //     if ($this->$resultado) {
-        //         echo "<tr><td>" + $rank[""] + "</td>";
-        //     }
-        // }
+        public function exibirTabela() 
+        {
+            if ($this->resultado) 
+            {
+                for ($i = 1; $i <= mysqli_num_rows($this->resultado); $i++) 
+                {
+                    echo 
+                    "<tr>"
+                        . "<td>". $i . "</td>"
+                        . "<td>" . $this->rank["login"] . "</td>" 
+                        . "<td>" . $this->rank["pontuacao_maxima"] . "</td>"
+                    . "</tr>";
+                }
+            }
+            else
+            {
+                echo
+                "<tr>
+                    <td> 1 </td>
+                    <td> ERRO </td>
+                    <td> ERRO </td>
+                </tr>";
+            }
+        }
     }
 ?>
