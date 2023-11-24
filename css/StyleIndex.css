@@ -8,6 +8,10 @@ body{
     margin: 0;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 .primaria {
     padding: 10px;
     background-color: var(--primaria);
@@ -34,33 +38,60 @@ body{
 }
 
 .filtro{
-    display: flex;
     position: relative;
     float: left;
-    vertical-align: middle;
+    background-color: var(--secundaria);
+    min-height: 100vh;
+    transition: 0.6s;
+    display: none;
+}
+
+.filtro.aberta{
+    display: block;
+}
+
+.filtro::-webkit-scrollbar{
+    display: none;
 }
 
 .seta.aberta{
     transform: rotate(90deg);
 }
 
+.seta-filtro{
+    position: relative;
+    float: left;
+    display: flex;
+    left: 0;
+    transform: rotate(0deg);
+}
+
+.seta-filtro.aberta{
+    transform: rotate(180deg);
+}
+
 .materia{
-    background-color: var(--secundaria);
-    display: flex;    
+    display: flex; 
     flex-direction: column;
+    cursor: pointer;
 }
 
 .conteudo{
-    background-color: aqua;
     padding: 2% 0%;
     display: none;
-    align-self: center;
     width: 100%;
-    justify-content: center;
+    background-color: var(--terciaria);
 }
 
 .conteudo.aberta{
     display: flex;
+}
+
+.enviar{
+    float: right;
+    background-color: var(--primaria);
+    border: none;
+    color: var(--contrastePrimaria);
 }
 
 .perguntas{
