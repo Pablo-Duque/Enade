@@ -79,8 +79,8 @@ body{
 .conteudo{
     padding: 2% 0%;
     display: none;
-    align-self: center;
     width: 100%;
+    background-color: var(--terciaria);
 }
 
 .conteudo.aberta{

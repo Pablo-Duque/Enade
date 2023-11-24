@@ -25,84 +25,28 @@
   </nav>
   <div class="filtro secundaria">
     <form action="" method="post">
-      <div class="materia">
-        <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Administração de Redes</p>
-                  <?php
-                    $sql = "SELECT id, nome FROM conteudo where materia = 'ADRD' ORDER BY nome";
-                    $pesquisar = mysqli_query($mysqli, $sql);
+      <?php 
+      $materia = "SELECT sigla, nome FROM materia ORDER BY nome";
+      $pesqMat = mysqli_query($mysqli, $materia);
 
-                    while($tupla =  mysqli_fetch_assoc($pesquisar)){
-                      extract($tupla);
+      while($tuplaMat =  mysqli_fetch_assoc($pesqMat)){
+        extract($tuplaMat);
+        echo"<div class='materia'>
+        <p onclick='abrirConteudo(this)'><svg class='seta' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-caret-right-fill' viewBox='0 0 16 16'>
+                    <path d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/>
+                  </svg>$nome</p>";
+                  
+                    $conteudo = "SELECT id, nome FROM conteudo where materia = '$sigla' ORDER BY nome";
+                    $pesqCont = mysqli_query($mysqli, $conteudo);
+
+                    while($tuplaCont =  mysqli_fetch_assoc($pesqCont)){
+                      extract($tuplaCont);
                       echo"<div class='conteudo'><input type='checkbox' name='conteudoSelec[]' value='$id' id='$id'><label for='$id'>$nome</label></div>";
                     }
-                  ?>
-      </div>
-                  <div class="materia">
-                    <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Arquitetura de Software</p>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-            </div>
-            <div class="materia">
-                <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Banco de Dados</p>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-                  </div>
-                  <div class="materia">
-                    <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Desenvolvimento Android</p>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                    <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-                  </div>
-                  <div class="materia">
-                    <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Engenharia de Software</p>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-                </div>
-                <div class="materia">
-                  <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Estrutura de Dados</p>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-                </div>
-                <div class="materia">
-                  <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>Inteligência Artificial</p>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                  <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-            </div>
-            <div class="materia">
-                <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                </svg>Internet das Coisas</p>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-              </div>
-              <div class="materia">
-                <p onclick="abrirConteudo(this)"><svg class="seta" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                </svg>Linguagem de Programação</p>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 1</label></div>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 2</label></div>
-                <div class="conteudo"><input type="checkbox" name="" id=""></input><label for="">Opção 3</label></div>
-              </div>
+                  
+        echo"</div>";
+      }
+      ?>
               <input type="submit" name="Filtrar" class="enviar">
             </form>
           </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/11/2023 às 23:26
+-- Tempo de geração: 24/11/2023 às 01:23
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -88,7 +88,7 @@ INSERT INTO `conteudo` (`ID`, `nome`, `materia`) VALUES
 
 CREATE TABLE `materia` (
   `sigla` varchar(4) NOT NULL,
-  `nome` varchar(40) DEFAULT NULL
+  `nome` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -164,25 +164,14 @@ ALTER TABLE `materia`
   ADD PRIMARY KEY (`sigla`);
 
 --
--- Índices de tabela `pergunta`
+-- AUTO_INCREMENT para tabelas despejadas
 --
-ALTER TABLE `pergunta`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `materia` (`materia`),
-  ADD KEY `conteudo` (`conteudo`);
 
 --
--- Índices de tabela `respostas`
+-- AUTO_INCREMENT de tabela `conteudo`
 --
-ALTER TABLE `respostas`
-  ADD KEY `aluno` (`aluno`),
-  ADD KEY `pergunta` (`pergunta`);
-
---
--- Índices de tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`login`);
+ALTER TABLE `conteudo`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Restrições para tabelas despejadas
@@ -193,20 +182,6 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `conteudo`
   ADD CONSTRAINT `conteudo_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `materia` (`sigla`);
-
---
--- Restrições para tabelas `pergunta`
---
-ALTER TABLE `pergunta`
-  ADD CONSTRAINT `pergunta_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `materia` (`sigla`),
-  ADD CONSTRAINT `pergunta_ibfk_2` FOREIGN KEY (`conteudo`) REFERENCES `conteudo` (`ID`);
-
---
--- Restrições para tabelas `respostas`
---
-ALTER TABLE `respostas`
-  ADD CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `usuario` (`login`),
-  ADD CONSTRAINT `respostas_ibfk_2` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
