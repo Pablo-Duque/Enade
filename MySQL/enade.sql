@@ -23,27 +23,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Estrutura para tabela `conteudo`
---
-
-CREATE TABLE `conteudo` (
-  `ID` int(11) NOT NULL,
-  `nome` varchar(20) DEFAULT NULL,
-  `materia` varchar(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `materia`
---
-
-CREATE TABLE `materia` (
-  `sigla` varchar(4) NOT NULL,
-  `nome` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -94,16 +73,7 @@ CREATE TABLE `usuario` (
 
 --
 -- Índices de tabela `conteudo`
---
-ALTER TABLE `conteudo`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `materia` (`materia`);
 
---
--- Índices de tabela `materia`
---
-ALTER TABLE `materia`
-  ADD PRIMARY KEY (`sigla`);
 
 --
 -- Índices de tabela `pergunta`
@@ -129,12 +99,6 @@ ALTER TABLE `usuario`
 --
 -- Restrições para tabelas despejadas
 --
-
---
--- Restrições para tabelas `conteudo`
---
-ALTER TABLE `conteudo`
-  ADD CONSTRAINT `conteudo_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `materia` (`sigla`);
 
 --
 -- Restrições para tabelas `pergunta`
