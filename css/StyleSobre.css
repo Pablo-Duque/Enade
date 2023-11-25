@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
 body{
     background: linear-gradient(to bottom right,#009FB7, black);
 }
@@ -24,7 +31,7 @@ body{
     margin-right: 100px;
     margin-left: 220px;
     width: 30%;
-    /*box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);*/
+    filter: drop-shadow(0px 0px 20px #3cabd8);
 }
 
 .texto{
@@ -42,6 +49,7 @@ body{
     font-size: 500%;
     margin-right: 0;
     margin-bottom: 0;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
 }
 
 .cartao{
@@ -58,6 +66,7 @@ body{
 
 .cartao p{
     font-size: 150%;
+    text-align: justify;
 }
 
 .cartao h1{
