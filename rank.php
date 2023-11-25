@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="css/rank.css">
     <title>Rank</title>
 </head>
+<?php
+    include_once("conexao.php"); //conexão com o banco
+?>
 <body>
     <div class="mt-2 container d-flex flex-column justify-content-center p-2 align-items-center" id="container-da-barra-de-pesquisa">
         <h1 class="mt-3 text-center">RANK</h1>
         <h5 class="text-center" id="subtitulo">Veja quanto outros alunos têm se preparado para o Enade</h5>
         <!-- barra de pesquisa -->
-        <div class="border-2 d-flex justify-content-between border-dark border mt-3 mb-3 slide-in" id="barra-de-pesquisa">
-            <small class="pt-3 pb-3 p-4 align-middle">procure um usuário...   </small>
-            <i class="p-4 fa-solid fa-magnifying-glass fa-xl"></i>
-        </div>
+        <!-- <div id="barra-de-pesquisa"> -->
+            <!-- <small class="pt-3 pb-3 p-4 align-middle">procure um usuário...   </small> -->
+            <form action="rank.php" method="post" class="border-2 d-flex justify-content-between border-dark border mt-3 mb-3 slide-in" id="barra-de-pesquisa">
+                <input type="text" placeholder="procure um usuário..." class=" d-flex m-0 border-0 w-100 p-2" name="pesquisar">
+                <button type="submit" class="border-top-0 border-right-0 border-bottom-0"><i class="p-4 fa-solid fa-magnifying-glass fa-xl"></i></button>
+            </form>
+        <!-- </div> -->
     </div>
     <div class="container d-flex p-0 mt-3 slide-in" id="container-do-rank">
         <table class="table align-middle table-striped table-secondary table-bordered border border-dark border-2">
@@ -28,86 +34,13 @@
             </thead>
             <tbody>
                 <?php
-                    include_once("conexao.php");
+                    $pesquisar = isset($_POST['pesquisar']) ? mysqli_real_escape_string($mysqli, $_POST['pesquisar']) : null;
 
-                    $rank = new Rank($mysqli);
+                    $rank = new Rank($mysqli, $pesquisar);
                     
                     $rank->exibirTabela();                    
                 ?>  
             </tbody>    
-
-            <!--<tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Pablito</td>
-                    <td>1000000</td>
-                </tr>
-            </tbody>-->
         </table> 
     </div>
 
@@ -123,32 +56,43 @@
 //Implementando os métodos de exibição da tabela.
 class Rank
 {
-    public $rank, $resultado;
+    public $resultado, $rank = NULL;
 
-    public function __construct($mysqli) 
+    public function __construct($mysqli, $buscar = NULL) 
     {
-        $queryRank = 'SELECT * FROM USUARIO';
+        if (is_null($buscar) || $buscar === '') 
+        {
+            $queryRank = 'SELECT * FROM USUARIO';
+        } 
+        else 
+        {
+            $queryRank = "SELECT * FROM USUARIO WHERE login = '$buscar'";
+        }
 
         $this->resultado = mysqli_query($mysqli, $queryRank);
 
         if ($this->resultado) 
-        {
+        {            
             $this->rank = $this->calcRank();
+        }
+        else
+        {
+            throw new Exception(mysqli_error($mysqli));
         }
     }
 
     public function exibirTabela() 
     {
-        if ($this->rank) 
+        if ($this->resultado) 
         {
             $i = 1;
-            foreach ($this->rank as $row) 
+            foreach ($this->rank as $linha) 
             {
                 echo 
                 "<tr>"
                     . "<td>". $i . "</td>"
-                    . "<td>" . $row["login"] . "</td>" 
-                    . "<td>" . $row["pontuacao_maxima"] . "</td>"
+                    . "<td>" . $linha["login"] . "</td>" 
+                    . "<td>" . $linha["pontuacao_maxima"] . "</td>"
                 . "</tr>";
 
                 $i++;
@@ -158,13 +102,12 @@ class Rank
         {
             echo
             "<tr>
-                <td> 1 </td>
-                <td> ERRO </td>
-                <td> ERRO </td>
+                <td> 0 </td>
+                <td> ERRO DE CONEXÃO </td>
+                <td> ERRO DE CONEXÃO </td>
             </tr>";
         }
     }
-
     private function calcRank($int = 1)
     {
         $tabela = array();
