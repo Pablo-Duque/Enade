@@ -13,6 +13,9 @@
     min-width: 100%;
     background-color: #e2e3e5;
 }
+.bg-custom{
+    background-color: #0c1b3a;
+}
 #container-do-rank {
     max-width: 70vw;
 }
