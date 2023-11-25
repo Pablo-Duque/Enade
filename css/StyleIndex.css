@@ -94,7 +94,10 @@ body{
     color: var(--contrastePrimaria);
 }
 
-.perguntas{
-    display: flex;
-    position: relative;
+.pergunta{
+    margin: 1% 20%;
+}
+
+.alternativas{
+    margin: 20px;
 }
