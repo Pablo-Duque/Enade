@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +16,7 @@
     <div class="barra primaria">
         <a href="#">Logo</a>
         <a href="index.php">Home</a>
-        <a href="#">Simulado</a>
+        <a href="confirmaSim.php">Simulado</a>
         <a href="rank.php">Ranking</a>
         <a href="#">Provas Anteriores</a>
         <a href="#">Sobre</a>
