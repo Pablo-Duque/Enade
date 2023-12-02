@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -44,6 +47,6 @@
         <input type="submit" class="botao" name="submit" value="Feito">
         </form>
     </div>
-    <script src="Script.js"></script>
+    <script src="javaScript/Script.js"></script>
 </body>
 </html>
