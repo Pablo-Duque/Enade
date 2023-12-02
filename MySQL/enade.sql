@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/11/2023 às 23:14
+-- Tempo de geração: 02/12/2023 às 20:16
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -157,8 +157,8 @@ CREATE TABLE `pergunta` (
 --
 
 INSERT INTO `pergunta` (`id`, `enunciado`, `materia`, `conteudo`, `ano`, `gabarito`, `PONTUACAO`) VALUES
-(1, 'Um analista foi contratado para desenvolver um sistema de pesquisa de DVDs em lojas virtuais. O sistema deverá solicitar ao usuário um título de DVD, que será usado para realizar a pesquisa nas bases de dados das lojas conveniadas. Ao detectar a disponibilidade do DVD solicitado, o sistema armazenará temporariamente os dados das lojas (nome, preço, data prevista para entrega do produto) e exibirá as informações ordenadas por preço. Após analisar as informações, o cliente poderá efetuar a compra. O contratante deverá testar algumas operações do sistema antes de ele ser finalizado. Há tempo suficiente para que o analista atenda a essa solicitação e efetue eventuais modificações exigidas pelo contratante. <br><br>Com relação a essa situação, julgue os itens a seguir quanto ao modelo de ciclo de vida.', 'ENSW', 19, 2008, 4, NULL),
-(2, 'O conceito de máquina virtual (MV) foi usado na década de 70 do século passado no sistema operacional IBM System 370. Atualmente, centros de dados (datacenters) usam MVs para migrar tarefas entre servidores conectados em rede e, assim, equilibrar carga de processamento. Além disso, plataformas atuais de desenvolvimento de software empregam MVs (Java, .NET). Uma MV pode ser construída para emular um processador ou um computador completo. Um código desenvolvido para uma máquina real pode ser executado de forma transparente em uma MV. <br><br>Com relação a essas informações, assinale a opção correta.', 'ADRD', 2, 2008, 3, NULL);
+(1, 'Um analista foi contratado para desenvolver um sistema de pesquisa de DVDs em lojas virtuais. O sistema deverá solicitar ao usuário um título de DVD, que será usado para realizar a pesquisa nas bases de dados das lojas conveniadas. Ao detectar a disponibilidade do DVD solicitado, o sistema armazenará temporariamente os dados das lojas (nome, preço, data prevista para entrega do produto) e exibirá as informações ordenadas por preço. Após analisar as informações, o cliente poderá efetuar a compra. O contratante deverá testar algumas operações do sistema antes de ele ser finalizado. Há tempo suficiente para que o analista atenda a essa solicitação e efetue eventuais modificações exigidas pelo contratante. <br><br>Com relação a essa situação, julgue os itens a seguir quanto ao modelo de ciclo de vida.', 'ENSW', 19, 2008, 4, 10000),
+(2, 'O conceito de máquina virtual (MV) foi usado na década de 70 do século passado no sistema operacional IBM System 370. Atualmente, centros de dados (datacenters) usam MVs para migrar tarefas entre servidores conectados em rede e, assim, equilibrar carga de processamento. Além disso, plataformas atuais de desenvolvimento de software empregam MVs (Java, .NET). Uma MV pode ser construída para emular um processador ou um computador completo. Um código desenvolvido para uma máquina real pode ser executado de forma transparente em uma MV. <br><br>Com relação a essas informações, assinale a opção correta.', 'ADRD', 2, 2008, 3, 1001);
 
 -- --------------------------------------------------------
 
@@ -179,14 +179,21 @@ CREATE TABLE `respostas` (
 --
 
 CREATE TABLE `usuario` (
-  `login` varchar(20) NOT NULL,
+  `EMAIL` varchar(80) NOT NULL,
   `Nome` varchar(50) NOT NULL,
   `Sobrenome` varchar(50) NOT NULL,
-  `senha` varchar(255) DEFAULT NULL,
+  `SENHA` varchar(255) DEFAULT NULL,
   `foto` blob DEFAULT NULL,
   `pontuacao_maxima` int(11) DEFAULT NULL,
-  `admin` int(11) DEFAULT NULL
+  `ADM` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`EMAIL`, `Nome`, `Sobrenome`, `SENHA`, `foto`, `pontuacao_maxima`, `ADM`) VALUES
+('admin@admin.com', 'trtyt', 'fdgj', '$2y$10$qSrjetiYS49LWMevdy/wOOOo/OX666rkWxxTzkBIqDCyefo6WlQD2', NULL, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -230,7 +237,7 @@ ALTER TABLE `respostas`
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`login`);
+  ADD PRIMARY KEY (`EMAIL`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -275,8 +282,8 @@ ALTER TABLE `pergunta`
 -- Restrições para tabelas `respostas`
 --
 ALTER TABLE `respostas`
-  ADD CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `usuario` (`login`),
-  ADD CONSTRAINT `respostas_ibfk_2` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`ID`);
+  ADD CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `usuario` (`EMAIL`),
+  ADD CONSTRAINT `respostas_ibfk_2` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
