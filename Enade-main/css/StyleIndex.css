@@ -1,0 +1,103 @@
+@import url(Colors.css);
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    margin: 0;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.primaria {
+    padding: 10px;
+    background-color: var(--primaria);
+    overflow: hidden;
+}
+
+.primaria a {
+    color: var(--contrastePrimaria);
+    text-decoration: none;
+    padding: 20px;
+    font-size: x-large;
+}
+
+.secundaria {
+    font-size: x-large;
+    align-items: center;
+}
+
+.barra {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    min-height: 40px;
+}
+
+.filtro{
+    position: relative;
+    float: left;
+    background-color: var(--secundaria);
+    min-height: 100vh;
+    transition: 0.6s;
+    display: none;
+}
+
+.filtro.aberta{
+    display: block;
+}
+
+.filtro::-webkit-scrollbar{
+    display: none;
+}
+
+.seta.aberta{
+    transform: rotate(90deg);
+}
+
+.seta-filtro{
+    position: relative;
+    float: left;
+    display: flex;
+    left: 0;
+    transform: rotate(0deg);
+}
+
+.seta-filtro.aberta{
+    transform: rotate(180deg);
+}
+
+.materia{
+    display: flex; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.conteudo{
+    padding: 2% 0%;
+    display: none;
+    width: 100%;
+    background-color: var(--terciaria);
+}
+
+.conteudo.aberta{
+    display: flex;
+}
+
+.enviar{
+    float: right;
+    background-color: var(--primaria);
+    border: none;
+    color: var(--contrastePrimaria);
+}
+
+.pergunta{
+    margin: 1% 20%;
+}
+
+.alternativas{
+    margin: 20px;
+}
