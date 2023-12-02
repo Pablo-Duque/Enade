@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,7 +69,7 @@ class Rank
         } 
         else 
         {
-            $queryRank = "SELECT * FROM USUARIO WHERE login = '$buscar'";
+            $queryRank = "SELECT * FROM USUARIO WHERE email = '$buscar'";
         }
 
         $this->resultado = mysqli_query($mysqli, $queryRank);
@@ -91,7 +94,7 @@ class Rank
                 echo 
                 "<tr>"
                     . "<td>". $i . "</td>"
-                    . "<td>" . $linha["login"] . "</td>" 
+                    . "<td>" . $linha["EMAIL"] . "</td>" 
                     . "<td>" . $linha["pontuacao_maxima"] . "</td>"
                 . "</tr>";
 
