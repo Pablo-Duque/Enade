@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,10 +20,10 @@
   <nav class="barra primaria">
     <a href="#">Logo</a>
     <a href="#">Home</a>
-    <a href="#">Simulado</a>
-    <a href="rank.html">Ranking</a>
+    <a href="confirmaSim.php">Simulado</a>
+    <a href="rank.php">Ranking</a>
     <a href="#">Provas Anteriores</a>
-    <a href="#">Sobre</a>
+    <a href="sobre.php">Sobre</a>
     <a href="#">Cadastrar Pergunta</a>
   </nav>
   <div class="filtro secundaria">
@@ -185,7 +188,6 @@
           //Imprime as alternativas de cada pergunta
           $alternativa = "SELECT texto, pergunta as questao, alternativa as valor FROM alternativa WHERE pergunta = $id ORDER BY RAND()";
           $pesqAlt = mysqli_query($mysqli, $alternativa);
-          
           echo"<div class = 'alternativas'>";
           while($tuplaAlt = mysqli_fetch_assoc($pesqAlt)){
             extract($tuplaAlt);
