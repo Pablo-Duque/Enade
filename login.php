@@ -25,7 +25,7 @@
         $resultado = mysqli_query($mysqli, $result);
 
         if ($resultado && $usuario = mysqli_fetch_assoc($resultado)) {
-            if (password_verify($senha, $usuario["SENHA"])) {
+            if (isset($usuario["SENHA"]) && password_verify($senha, $usuario["SENHA"])) {
                 if (password_needs_rehash($usuario["SENHA"], PASSWORD_DEFAULT)) {
                     $hashAtualizado = password_hash($senha, PASSWORD_DEFAULT);// Atualiza o hash 
                     $atualizaSenha = "UPDATE USUARIO SET SENHA = '$hashAtualizado' WHERE EMAIL = '$email'";//Insere hash atualizado no banco
@@ -38,7 +38,7 @@
                 /*inserir if(campo adm == 1 ){
                     direcionar a pagina de adms com cadastro de perguntas
                 }*/
-                header("Location: inicio.php");//Entrar na tela de inicio
+                header("Location: index.php");//Entrar na tela de inicio
             } else {
                 header("Location: login_tela.php");
                 $_SESSION['loginErro'] = 'Email ou senha inválido!';
