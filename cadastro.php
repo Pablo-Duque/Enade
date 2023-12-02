@@ -8,12 +8,13 @@
 
     $criptografia = password_hash($senha, PASSWORD_DEFAULT);
 
-    $result = "INSERT INTO usuario(EMAIL, SENHA, NOME, SOBRENOME, ADM) VALUES ('$email', '$criptografia', '$nome', '$sobreNome', 0)";
+    $result = "INSERT INTO usuario(EMAIL, SENHA, NOME, SOBRENOME, PONTUACAO_MAXIMA,ADM) VALUES ('$email', '$criptografia', '$nome', '$sobreNome', 0, 0)";
     $resultado = mysqli_query($mysqli, $result);
 
     if ($resultado) {
-        header("Location: login_tela.php");
         $_SESSION['cadastroSucesso'] = 'Usuário cadastrado com sucesso! Faça login para entrar';
+        header("Location: login_tela.php");
+        exit;
     } else {
         echo "Erro ao cadastrar usuário: " . mysqli_error($mysqli);
     }
