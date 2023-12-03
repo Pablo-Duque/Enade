@@ -38,7 +38,7 @@
       extract($minMax);
 
       echo"<div class='anos'>";
-      echo"<select name='de'>";
+      echo"<label for='de'>De: </label><select name='de' id='de'>";
       while($tuplaDe =  mysqli_fetch_assoc($pesqAnoDe)){
         extract($tuplaDe);
         if($ano == $minimo)
@@ -49,7 +49,7 @@
       }
       echo"</select>";
       
-      echo"<select name='ate'>";
+      echo"<label for='ate'>Até: </label><select name='ate' id='ate'>";
       while($tuplaAte =  mysqli_fetch_assoc($pesqAnoAte)){
         extract($tuplaAte);
         if($ano == $maximo)
@@ -64,7 +64,7 @@
       //Imprime tupla por tupla das materias
       $materia = "SELECT sigla, nome FROM materia ORDER BY nome";
       $pesqMat = mysqli_query($mysqli, $materia);
-      while($tuplaMat =  mysqli_fetch_assoc($pesqMat)){
+      while($tuplaMat = mysqli_fetch_assoc($pesqMat)){
         //Extrair do banco de dados, desse modo consigo utilizar as variaveis com o mesmo nome do atributo
         extract($tuplaMat);
         echo"<div class='materia'>
@@ -79,6 +79,7 @@
 
         while($tuplaCont =  mysqli_fetch_assoc($pesqCont)){
           extract($tuplaCont);
+
           echo"<div class='conteudo'><input type='checkbox' name='conteudoSelec[]' value='$id' id='$id'><label for='$id'>$nome</label></div>";
         }
                   
@@ -98,9 +99,7 @@
   <div class='contentPerguntas'>
     <form action='' method='post'>
     ";
-    //Armazenar questões selecionadas
     $marcado = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    
     //Atribuir um valor se nada for selecionado, pois eu uso esse valor tanto usando o filtro como nao
     //Porque se eu nao selecionar nenhuma checkbox o filtro nao ativaria por causa do primeiro if !empty
     if (isset($_POST['de']) && isset($_POST['ate'])) {
@@ -127,30 +126,33 @@
         }
       }
       //Imprime as perguntas
-      $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE conteudo IN($conjuntoValores) AND ano BETWEEN $de AND $ate ORDER BY RAND()";
+      $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE conteudo IN($conjuntoValores) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
       $pesqPerg = mysqli_query($mysqli, $pergunta);
 
       while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
         extract($tuplaPerg);
-        
+
         echo"<div class = 'pergunta'>($ano) $enunciado<br>";
         
         //Imprime as alternativas de cada pergunta
-        $alternativa = "SELECT texto, pergunta as questao, alternativa as valor FROM alternativa WHERE pergunta = $id ORDER BY RAND()";
+        $alternativa = "SELECT texto, alternativa as valor FROM alternativa WHERE pergunta = $id ORDER BY RAND()";
         $pesqAlt = mysqli_query($mysqli, $alternativa);
         
         echo"<div class = 'alternativas'>";
         while($tuplaAlt = mysqli_fetch_assoc($pesqAlt)){
           extract($tuplaAlt);
-          echo"<input type='radio' id='$valor' name='$questao' value='$valor'>
-          <label for='$valor'>$texto</label><br>";
+
+          //Se ele já apertou em responder
+          if(!empty($marcado['Responder']))
+            $verificar = ($gabarito == $valor) ? 'correto' : '';
+          else $verificar = '';
+
+            echo"<div class = 'alternativa $verificar'>";
+              echo"<input type='radio' id='$id $valor' name='$id' value='$valor'>
+              <label for='$id $valor'>$texto</label><br>";
+            echo"</div>";
         }
         echo"</div>";
-        echo"</div>";
-
-        $i++;
-        if($i >= $max)
-          break;
         }
       }
       else{
@@ -175,33 +177,39 @@
         $aleatorios = implode(', ', $gerar);
 
         //Buscar questoes aleatorias
-        $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND()";
+        $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
         $pesqPerg = mysqli_query($mysqli, $pergunta);
 
         while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
           extract($tuplaPerg);
+
           echo"<div class = 'pergunta'>($ano) $enunciado<br>";
           
           //Imprime as alternativas de cada pergunta
-          $alternativa = "SELECT texto, pergunta as questao, alternativa as valor FROM alternativa WHERE pergunta = $id ORDER BY RAND()";
+          $alternativa = "SELECT texto, alternativa as valor FROM alternativa WHERE pergunta = $id ORDER BY RAND()";
           $pesqAlt = mysqli_query($mysqli, $alternativa);
           
-          echo"<div class = 'alternativas'>";
+          
           while($tuplaAlt = mysqli_fetch_assoc($pesqAlt)){
             extract($tuplaAlt);
-            echo"<input type='radio' id='$valor' name='$questao' value='$valor'>
-            <label for='$valor'>$texto</label><br>";
+
+            //Se ele já apertou em responder
+            if(!empty($marcado['Responder']))
+            $verificar = ($gabarito == $valor) ? 'correto' : '';
+          else $verificar = '';
+
+            echo"<div class = 'alternativa $verificar'>";
+              echo"<input type='radio' id='$id $valor' name='$id' value='$valor'>
+              <label for='$id $valor'>$texto</label><br>";
+            echo"</div>";
           }
           echo"</div>";
-          echo"</div>";
 
-          $i++;
-          if($i >= $max)
-            break;
         }
       }
       ?>
-      </input>
+      <input type="submit" value="Responder" name="Responder" class="enviar">
+    </form>
     </div>
 </body>
 </html>
