@@ -130,7 +130,7 @@
         }
       }
       //Imprime as perguntas
-      $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE conteudo IN($conjuntoValores) AND ano BETWEEN $de AND $ate ORDER BY RAND()";
+      $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE conteudo IN($conjuntoValores) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
       $pesqPerg = mysqli_query($mysqli, $pergunta);
 
       while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
@@ -150,10 +150,6 @@
         }
         echo"</div>";
         echo"</div>";
-
-        $i++;
-        if($i >= $max)
-          break;
         }
       }
       else{
@@ -178,7 +174,7 @@
         $aleatorios = implode(', ', $gerar);
 
         //Buscar questoes aleatorias
-        $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND()";
+        $pergunta = "SELECT enunciado, id, ano FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
         $pesqPerg = mysqli_query($mysqli, $pergunta);
 
         while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
@@ -196,10 +192,6 @@
           }
           echo"</div>";
           echo"</div>";
-
-          $i++;
-          if($i >= $max)
-            break;
         }
       }
       ?>

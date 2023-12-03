@@ -58,10 +58,10 @@
   <h1 style="display: flex; justify-content: center; align-items: center;">Você está prestes a começar o Simulado! Leia com atenção.</h1>
   <div class="lista">
     <ol>
-        <li>O simulado conta com 30 perguntas, todas alternativas</li>
+        <li>O simulado conta com 30 perguntas, todas são de alternativa</li>
         <li>Você terá 4 horas para completar a prova</li>
         <li>Caso não finalize no tempo concedido, você será redirecionado para a tela inicial</li>
-        <li>As perguntas serão slecionadas de forma aleatória</li>
+        <li>As perguntas serão selecionadas de forma aleatória</li>
         <li>Ao final do teste, você deverá clicar no botão "Enviar Respostas"</li>
         <li>Sua pontuação será contabilizada e enviada ao ranking</li>
         <li>O simulado possui tentativas ilimitadas</li>
