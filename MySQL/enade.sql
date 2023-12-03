@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/11/2023 às 23:14
+-- Tempo de geração: 03/12/2023 às 14:39
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -163,11 +163,11 @@ INSERT INTO `pergunta` (`id`, `enunciado`, `materia`, `conteudo`, `ano`, `gabari
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `respostas`
+-- Estrutura para tabela `resposta`
 --
 
-CREATE TABLE `respostas` (
-  `aluno` varchar(20) DEFAULT NULL,
+CREATE TABLE `resposta` (
+  `aluno` varchar(255) DEFAULT NULL,
   `pergunta` int(11) DEFAULT NULL,
   `alternativa` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -179,13 +179,13 @@ CREATE TABLE `respostas` (
 --
 
 CREATE TABLE `usuario` (
-  `login` varchar(20) NOT NULL,
   `Nome` varchar(50) NOT NULL,
   `Sobrenome` varchar(50) NOT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `foto` blob DEFAULT NULL,
   `pontuacao_maxima` int(11) DEFAULT NULL,
-  `admin` int(11) DEFAULT NULL
+  `email` varchar(255) NOT NULL,
+  `adm` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -220,9 +220,9 @@ ALTER TABLE `pergunta`
   ADD KEY `conteudo` (`conteudo`);
 
 --
--- Índices de tabela `respostas`
+-- Índices de tabela `resposta`
 --
-ALTER TABLE `respostas`
+ALTER TABLE `resposta`
   ADD KEY `aluno` (`aluno`),
   ADD KEY `pergunta` (`pergunta`);
 
@@ -230,7 +230,7 @@ ALTER TABLE `respostas`
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`login`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -272,11 +272,11 @@ ALTER TABLE `pergunta`
   ADD CONSTRAINT `pergunta_ibfk_2` FOREIGN KEY (`conteudo`) REFERENCES `conteudo` (`ID`);
 
 --
--- Restrições para tabelas `respostas`
+-- Restrições para tabelas `resposta`
 --
-ALTER TABLE `respostas`
-  ADD CONSTRAINT `respostas_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `usuario` (`login`),
-  ADD CONSTRAINT `respostas_ibfk_2` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`ID`);
+ALTER TABLE `resposta`
+  ADD CONSTRAINT `resposta_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `usuario` (`email`),
+  ADD CONSTRAINT `resposta_ibfk_2` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
