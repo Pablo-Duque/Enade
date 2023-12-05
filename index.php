@@ -11,6 +11,7 @@
 
 <?php
   include_once("conexao.php");
+  session_start();
 ?>
 
 <body>
@@ -115,6 +116,9 @@
     $conjuntoValores = '';
     $i = 0;
     $max = 10;
+    $aparecidas = array();
+    if(!empty($marcado['Responder']))
+    $selecionadas = $_SESSION['questoes'];
 
     if(!empty($marcado['conteudoSelec'])){
       foreach($marcado['conteudoSelec'] as $valorMarcado){
@@ -125,12 +129,22 @@
           $conjuntoValores .= "$valorMarcado";
         }
       }
+      
       //Imprime as perguntas
+
+      //Se ele ja responder
+      if(!empty($selecionas))
+      $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE conteudo IN($selecionadas) AND ano BETWEEN $de AND $ate LIMIT $max";
+
+      //Ainda nao respondeu
+      else
       $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE conteudo IN($conjuntoValores) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
+
       $pesqPerg = mysqli_query($mysqli, $pergunta);
 
       while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
         extract($tuplaPerg);
+        $aparecidas[] = $id;
 
         echo"<div class = 'pergunta'>($ano) $enunciado<br>";
         
@@ -177,11 +191,17 @@
         $aleatorios = implode(', ', $gerar);
 
         //Buscar questoes aleatorias
+        if(!empty($selecionadas))
+        $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE id IN($selecionadas) AND ano BETWEEN $de AND $ate LIMIT $max";    
+
+        else
         $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
+
         $pesqPerg = mysqli_query($mysqli, $pergunta);
 
         while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
           extract($tuplaPerg);
+          $aparecidas[] = $id;
 
           echo"<div class = 'pergunta'>($ano) $enunciado<br>";
           
@@ -207,6 +227,9 @@
 
         }
       }
+
+      $selecionadas = implode(', ', $aparecidas);
+      $_SESSION['questoes'] = $selecionadas;
       ?>
       <input type="submit" value="Responder" name="Responder" class="enviar">
     </form>
