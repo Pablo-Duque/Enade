@@ -133,7 +133,7 @@
       //Imprime as perguntas
 
       //Se ele ja responder
-      if(!empty($selecionas))
+      if(!empty($selecionadas))
       $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE conteudo IN($selecionadas) AND ano BETWEEN $de AND $ate LIMIT $max";
 
       //Ainda nao respondeu
