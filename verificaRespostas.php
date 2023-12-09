@@ -38,6 +38,12 @@
     .botao:hover{
     background: #000000aa;
     }
+    p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+    }
   </style>
   <title>Simulado</title>
 </head>
@@ -90,13 +96,13 @@
         $resultado_atualizar_pontuacao = $mysqli->query($query_atualizar_pontuacao);
 
         if ($resultado_atualizar_pontuacao) {
-            echo "Sua pontuação: $pontuacao";
+            echo "<p>Sua pontuação: $pontuacao</p>";
             echo"<br>";
         } else {
-            echo "Erro ao atualizar a pontuação. Por favor, tente novamente.";
+            echo "<p>Erro ao atualizar a pontuação. Por favor, tente novamente.</p>";
         }
     } else {
-        echo "Método de requisição inválido";
+        echo "<p>Método de requisição inválido</p>";
     }
 ?>
 </body>
