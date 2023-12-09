@@ -15,26 +15,25 @@ body{
 .primaria {
     padding: 10px;
     background-color: var(--primaria);
-    overflow: hidden;
 }
-
 .primaria a {
     color: var(--contrastePrimaria);
     text-decoration: none;
     padding: 20px;
-    font-size: x-large;
+    font-size: large;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
-
 .secundaria {
     font-size: x-large;
     align-items: center;
 }
 
 .barra {
-    display: flex;
+    /* display: flex;
     justify-content: space-evenly;
     position: relative;
-    min-height: 40px;
+    min-height: 40px; */
 }
 
 .filtro{

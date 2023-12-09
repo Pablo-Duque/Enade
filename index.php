@@ -18,14 +18,14 @@
 ?>
 
 <body>
-  <nav class="barra primaria">
-    <a href="#">Logo</a>
-    <a href="#">Home</a>
-    <a href="#">Simulado</a>
-    <a href="rank.html">Ranking</a>
-    <a href="#">Provas Anteriores</a>
-    <a href="#">Sobre</a>
-    <a href="#">Cadastrar Pergunta</a>
+  <nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
+    <a href="index.php">LOGO</a>
+    <a href="index.php">Home</a>
+    <a href="index.php">Simulado</a>
+    <a href="rank.php">Ranking</a>
+    <a href="index.php">Provas Anteriores</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="cadastro_tela.php">Cadastrar Pergunta</a>
   </nav>
   <div class="filtro secundaria">
     <form action="" method="post">
@@ -247,5 +247,8 @@
     <script>
         new window.VLibras.Widget();
     </script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>

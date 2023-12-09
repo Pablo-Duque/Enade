@@ -8,6 +8,7 @@
     <title>Cadastro</title>
 </head>
 <body>
+    
     <div class="envoltorio">
         <form action="cadastro.php" method="POST" id="form">
             <h1 class="titulo">Registre-se</h1>

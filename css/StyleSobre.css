@@ -10,7 +10,7 @@ body{
 }
 
 .titulo{
-    display: flex;
+    /* display: flex; */
     text-align: right;
     margin-top: 100px;
     margin-bottom: 40px;
@@ -54,13 +54,13 @@ body{
 
 .cartao{
     background-color: black;
-    width: 100%;
-    height: auto;
+    /* width: 100%; */
+    /* height: auto; */
     color: #1E3888;
-    padding-top: 100px;
+    /* padding-top: 100px;
     padding-left: 200px;
     padding-right: 200px;
-    padding-bottom: 150px;
+    padding-bottom: 150px; */
     text-align: justify;
 }
 
