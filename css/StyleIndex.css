@@ -29,12 +29,12 @@ body{
     align-items: center;
 }
 
-.barra {
-    /* display: flex;
+/* .barra {
+    display: flex;
     justify-content: space-evenly;
     position: relative;
-    min-height: 40px; */
-}
+    min-height: 40px; 
+}*/
 
 .filtro{
     position: relative;

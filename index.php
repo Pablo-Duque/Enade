@@ -135,7 +135,7 @@
       
       //Imprime as perguntas
 
-      //Se ele ja responder
+      //Se ele ja respondeu
       if(!empty($selecionadas))
       $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE conteudo IN($selecionadas) AND ano BETWEEN $de AND $ate LIMIT $max";
 
@@ -159,12 +159,7 @@
         while($tuplaAlt = mysqli_fetch_assoc($pesqAlt)){
           extract($tuplaAlt);
 
-          //Se ele já apertou em responder
-          if(!empty($marcado['Responder']))
-            $verificar = ($gabarito == $valor) ? 'correto' : '';
-          else $verificar = '';
-
-            echo"<div class = 'alternativa $verificar'>";
+            echo"<div class = 'alternativa'>";
               echo"<input type='radio' id='$id $valor' name='$id' value='$valor'>
               <label for='$id $valor'>$texto</label><br>";
             echo"</div>";
