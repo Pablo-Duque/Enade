@@ -187,20 +187,21 @@
         }                    
         //Adiciona virgula depois de cada numero para usar no IN()
         $aleatorios = implode(', ', $gerar);
-
+        
         //Buscar questoes aleatorias
         if(!empty($selecionadas))
         $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE id IN($selecionadas) AND ano BETWEEN $de AND $ate LIMIT $max";    
-
+        
         else
         $pergunta = "SELECT enunciado, id, ano, gabarito FROM pergunta WHERE id IN($aleatorios) AND ano BETWEEN $de AND $ate ORDER BY RAND() LIMIT $max";
-
+        
         $pesqPerg = mysqli_query($mysqli, $pergunta);
-
+        
         while($tuplaPerg = mysqli_fetch_assoc($pesqPerg)){
           extract($tuplaPerg);
           $aparecidas[] = $id;
-
+          
+          echo"<br><br><input type='checkbox' id = '$id estudou'></input> <label for='$id estudou'>Já estudei essa questão</label><br>";
           echo"<div class = 'pergunta'>($ano) $enunciado<br>";
           
           //Imprime as alternativas de cada pergunta
