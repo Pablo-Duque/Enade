@@ -102,6 +102,7 @@ body{
     margin: 20px;
     vertical-align: middle;
     display: flex;
+    gap: 7px;
 }
 
 .correto.alternativa{
