@@ -19,7 +19,7 @@
 
 <body>
   <nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
-    <a href="index.php">LOGO</a>
+    <a href="index.php"><img src="./img/sirius.png" alt=""></a>
     <a href="index.php">Home</a>
     <a href="confirmaSim.php">Simulado</a>
     <a href="rank.php">Ranking</a>
