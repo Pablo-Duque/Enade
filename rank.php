@@ -20,7 +20,6 @@
         <a href="rank.php">Ranking</a>
         <a href="provasAnteriores.html">Provas Anteriores</a>
         <a href="sobre.html">Sobre</a>
-        <a href="#">Cadastrar Pergunta</a>
     </nav>
     <div class="mt-2 container d-flex flex-column justify-content-center p-2 align-items-center" id="container-da-barra-de-pesquisa">
         <h1 class="mt-3 text-center">RANK</h1>

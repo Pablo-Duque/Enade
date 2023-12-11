@@ -48,7 +48,6 @@
     <a href="rank.php">Ranking</a>
     <a href="provasAnteriores.html">Provas Anteriores</a>
     <a href="sobre.html">Sobre</a>
-    <a href="#">Cadastrar Pergunta</a>
   </nav>
 
 
