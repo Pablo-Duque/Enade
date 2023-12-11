@@ -16,11 +16,11 @@
     <nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
         <a href="index.php">LOGO</a>
         <a href="index.php">Home</a>
-        <a href="index.php">Simulado</a>
+        <a href="confirmaSim.php">Simulado</a>
         <a href="rank.php">Ranking</a>
-        <a href="index.php">Provas Anteriores</a>
+        <a href="provasAnteriores.html">Provas Anteriores</a>
         <a href="sobre.html">Sobre</a>
-        <a href="cadastro_tela.php">Cadastrar Pergunta</a>
+        <a href="#">Cadastrar Pergunta</a>
     </nav>
     <div class="mt-2 container d-flex flex-column justify-content-center p-2 align-items-center" id="container-da-barra-de-pesquisa">
         <h1 class="mt-3 text-center">RANK</h1>
@@ -87,7 +87,7 @@ class Rank
         } 
         else 
         {
-            $queryRank = "SELECT * FROM USUARIO WHERE login = '$buscar'";
+            $queryRank = "SELECT * FROM USUARIO WHERE nome = '$buscar'";
         }
 
         $this->resultado = mysqli_query($mysqli, $queryRank);
@@ -112,7 +112,7 @@ class Rank
                 echo 
                 "<tr>"
                     . "<td>". $i . "</td>"
-                    . "<td>" . $linha["login"] . "</td>" 
+                    . "<td>" . $linha["Nome"] . "</td>" 
                     . "<td>" . $linha["pontuacao_maxima"] . "</td>"
                 . "</tr>";
 

@@ -101,6 +101,7 @@ body{
 .alternativa{
     margin: 20px;
     vertical-align: middle;
+    display: flex;
 }
 
 .correto.alternativa{

@@ -21,11 +21,11 @@
   <nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
     <a href="index.php">LOGO</a>
     <a href="index.php">Home</a>
-    <a href="index.php">Simulado</a>
+    <a href="confirmaSim.php">Simulado</a>
     <a href="rank.php">Ranking</a>
-    <a href="index.php">Provas Anteriores</a>
+    <a href="provasAnteriores.html">Provas Anteriores</a>
     <a href="sobre.html">Sobre</a>
-    <a href="cadastro_tela.php">Cadastrar Pergunta</a>
+    <a href="#">Cadastrar Pergunta</a>
   </nav>
   <div class="filtro secundaria">
     <form action="" method="post">

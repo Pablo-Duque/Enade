@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/StyleIndex.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         .alternativa{
             margin: 20px;
@@ -40,22 +41,22 @@
 </head>
 <body>
 
-    <nav class="barra primaria">
-        <a href="index.php">Logo</a>
-        <a href="index.php">Home</a>
-        <a href="confirmaSim.php">Simulado</a>
-        <a href="rank.php">Ranking</a>
-        <a href="provasAnteriores.php">Provas Anteriores</a>
-        <a href="sobre.php">Sobre</a>
-        <a href="#">Cadastrar Pergunta</a>
-    </nav>
+<nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
+    <a href="index.php">LOGO</a>
+    <a href="index.php">Home</a>
+    <a href="confirmaSim.php">Simulado</a>
+    <a href="rank.php">Ranking</a>
+    <a href="provasAnteriores.html">Provas Anteriores</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="#">Cadastrar Pergunta</a>
+  </nav>
 
 
     <p>Tempo Restante: <span id="timer"></span></p>
     
 
     <?php
-    $query_pergunta = "SELECT ID, enunciado, ano FROM PERGUNTA ORDER BY RAND() LIMIT 2";
+    $query_pergunta = "SELECT ID, enunciado, ano FROM PERGUNTA ORDER BY RAND() LIMIT 10";
     $result_pergunta = $mysqli->query($query_pergunta);
 
     if ($result_pergunta && $result_pergunta->num_rows != 0) {
@@ -88,7 +89,8 @@
     }
 ?>
 
-
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>
