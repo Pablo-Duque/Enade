@@ -1,9 +1,16 @@
 <?php
     session_start();
     include_once("conexao.php");
+
+    $Co = "SELECT ID, nome FROM conteudo";
+    $Conteudos = mysqli_query($mysqli, $Co);
+
+    $Ma = "SELECT sigla, nome from materia";
+    $Materia = mysqli_query($mysqli, $Ma);
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,50 +52,62 @@
                 <h2>D</h2>
                 <input class="alternativas" type="text" name="D" required>
             </div>
+            <div class="alter">
+                <h2>E</h2>
+                <input class="alternativas" type="text" name="E" required>
+            </div>
             
             <div class="alter">
                 <h2>Gabarito:</h2>
                 <select name="gabarito" id="" required>
+                    <option value="">Selecione</option>
                     <option value="1">A</option>
                     <option value="2">B</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
+                    <option value="5">E</option>
                 </select>
 
                 <h2>Qual o ano da questão:</h2>
                 <select name="ano" id="" required>
+                    <option value="">Selecione</option>
                     <option value="2008">2008</option>
+                    <option value="2010">2010</option>
+                    <option value="2014">2014</option>
+                    <option value="2017">2017</option>
+                    <option value="2021">2021</option>
                 </select>
             </div>
 
             <div class="alter">
                 <h2>Matéria:</h2>
                 <select name="materia" id="" required>
+                    <option value="">Selecione</option>
                     <?php
-                        //$alternativas = "SELECT sigla, nome FROM materia";
-                        //$resulta = $mysqli->query($sql);
-                        //while ($row = $result->fetch_assoc()) {
-                            //$selected = ($row['nome'] == $valorPreselecionado) ? 'selected' : '';
-                            //echo "<option value='" . $row['sigla'] . "'>" . $row['nome'] . "</option>";
-                        //}
+                        while ($rowMateria = mysqli_fetch_assoc($Materia)) {
+                            echo "<option value='" . $rowMateria['sigla'] . "'>" . $rowMateria['nome'] . "</option>";
+                        }
                     ?>
-                    <option value="ADRD">Administração de Redes</option>
-                    <option value="ARQS">Arquitetura de Software</option>
-                    <option value="BDA">Banco de Dados</option>
-                    <option value="CTGR">Conteúdo Geral</option>
-                    <option value="DDMO">Desenvolvimento para Dispositivos Móveis</option>
-                    <option value="ENSW">Engenharia de Software</option>
-                    <option value="ESD">Estrutura de Dados</option>
-                    <option value="IOTS">Internet das Coisas</option>
-                    <option value="LPR">Linguagem de Programação</option>
                 </select>
 
                 <h2>Conteúdo:</h2>
                 <select name="conteudo" id="" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value="">Selecione</option>
+                    <?php
+                        while ($rowConteudo = mysqli_fetch_assoc($Conteudos)) {
+                            echo "<option value='" . $rowConteudo['ID'] . "'>" . $rowConteudo['nome'] . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+
+            <div class="alter">
+                <h2>Selecione a dificuldade:</h2>
+                <select name="nota" id="" required>
+                    <option value="">Selecione</option>
+                    <option value="5">Fácil</option>
+                    <option value="15">Médio</option>
+                    <option value="30">Díficil</option>
                 </select>
             </div>
             <center>
