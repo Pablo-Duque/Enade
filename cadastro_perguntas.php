@@ -20,14 +20,14 @@
     <title>Cadastrar perguntas</title>
 </head>
 <body>
-    <nav class="barra primaria">
-        <a href="#">Logo</a>
+    <nav class="container-fluid p-auto bg-primary primaria m-0 text-center">
+        <a href="index.php"><img src="./img/sirius.png" alt=""></a>
         <a href="index.php">Home</a>
         <a href="confirmaSim.php">Simulado</a>
         <a href="rank.php">Ranking</a>
-        <a href="#">Provas Anteriores</a>
-        <a href="sobre.php">Sobre</a>
-        <a href="#">Cadastrar Pergunta</a>
+        <a href="provasAnteriores.html">Provas Anteriores</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="cadastro_perguntas.php">Sobre</a>
     </nav>
 
     <div class="cartao">
