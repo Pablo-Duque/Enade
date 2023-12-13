@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/12/2023 às 23:59
+-- Tempo de geração: 13/12/2023 às 14:21
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -231,7 +231,8 @@ INSERT INTO `usuario` (`Nome`, `Sobrenome`, `senha`, `foto`, `pontuacao_maxima`,
 -- Índices de tabela `alternativa`
 --
 ALTER TABLE `alternativa`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pergunta` (`pergunta`);
 
 --
 -- Índices de tabela `conteudo`
@@ -292,6 +293,12 @@ ALTER TABLE `pergunta`
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `alternativa`
+--
+ALTER TABLE `alternativa`
+  ADD CONSTRAINT `alternativa_ibfk_1` FOREIGN KEY (`pergunta`) REFERENCES `pergunta` (`id`);
 
 --
 -- Restrições para tabelas `conteudo`
