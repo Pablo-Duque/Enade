@@ -33,6 +33,7 @@
         <form action="cadper.php" method="post">
 
             <h2>Digite o enunciado:</h2>
+            <h4>Se quiser pular uma linha digite &ltbr&gt, digite duas vezes para criar um espaço entre as linhas.</h4>
             <input class="enunciado" type="text" name="enunciado" required>
 
             <h2>Alternativas:</h2>
