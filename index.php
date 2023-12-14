@@ -91,7 +91,7 @@
       }
 
       echo"
-      <input type='submit' value='Filtrar' name='FiltrarContent' class='enviar'>
+      <input type='submit' value='Filtrar' name='FiltrarContent' class='enviar mb-4'>
     </form>
   </div>
 
@@ -230,7 +230,7 @@
       $selecionadas = implode(', ', $aparecidas);
       $_SESSION['questoes'] = $selecionadas;
       ?>
-      <input type="submit" value="Responder" name="Responder" class="enviar">
+      <input type="submit" value="Responder" name="Responder" class="enviar mb-4">
     </form>
     </div>
     <div vw class="enabled">
